@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title>Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>{{ appTitle }}</h1>
+      <p>{{ message }}</p>
+      <button @click="changeColors">Change Colors</button>
+      
+      <input v-model="showColors" type="checkbox">
+      <input v-model="message" type="text">
+      
+      <ol v-show="showColors">
+        <li v-for="color in colors" :style="{'background-color': color}">{{ color }}</li>
+      </ol>
+    </div>
+  
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+    	const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+          	appTitle: 'Vue App',
+            message: 'Hello Vue!',
+            colors: ['White', 'Black', 'Red', 'Blue'],
+            showColors: true,
+          };
+        },
+        methods: {
+        	changeColors() {
+          	this.colors = ['Violet', 'Pink', 'Orange'];
+          },
+        },
+      }).mount('#app');
+    </script>
+  </body>
+</html>
